@@ -1,17 +1,21 @@
 package com.callsign.customer.support.model.delivery;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 /**
  * @author Shadab Khan
  * @since 09/01/2022
  */
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,5 +33,7 @@ public class Delivery {
     private Timestamp timeToReachDestination;
     private int riderRating;
     @Column(name = "restaurant_mean_time_to_prepare_food")
-    private Timestamp timeToPrepareFood;
+//  milliseconds
+    private long timeToPrepareFood;
+    private boolean monitored;
 }

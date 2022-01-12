@@ -1,6 +1,6 @@
 package com.callsign.customer.support.repository;
 
-import com.callsign.customer.support.model.Ticket;
+import com.callsign.customer.support.model.ticket.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -58,7 +58,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
             }
         } catch (Exception e) {
             log.error("Error in Login: {} ", e.getMessage());
-            response.setStatus(HttpStatus.FORBIDDEN.value());
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
             Map<String, String> error = new HashMap<>();
             error.put("error_message", e.getMessage());
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
