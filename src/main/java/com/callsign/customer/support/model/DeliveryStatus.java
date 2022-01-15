@@ -1,4 +1,4 @@
-package com.callsign.customer.support.model.delivery;
+package com.callsign.customer.support.model;
 
 /**
  * @author Shadab Khan

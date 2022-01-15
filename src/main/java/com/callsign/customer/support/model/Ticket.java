@@ -1,6 +1,5 @@
-package com.callsign.customer.support.model.ticket;
+package com.callsign.customer.support.model;
 
-import com.callsign.customer.support.model.delivery.Delivery;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +24,7 @@ public class Ticket {
     private TicketPriority priority;
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
+    private String description;
     private String resolution;
     @ManyToOne
     private Delivery delivery;

@@ -1,6 +1,6 @@
-package com.callsign.customer.support.repository.delivery;
+package com.callsign.customer.support.repository;
 
-import com.callsign.customer.support.model.delivery.Delivery;
+import com.callsign.customer.support.model.Delivery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 

@@ -1,4 +1,4 @@
-package com.callsign.customer.support.model.delivery;
+package com.callsign.customer.support.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,9 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 /**
  * @author Shadab Khan
@@ -30,10 +28,11 @@ public class Delivery {
     private Timestamp expectedDeliveryTime;
     @Column(name = "current_distance_from_destination_in_meters")
     private int distanceFromDestination;
-    private Timestamp timeToReachDestination;
+    //  milliseconds
+    private long timeToReachDestination;
     private int riderRating;
     @Column(name = "restaurant_mean_time_to_prepare_food")
-//  milliseconds
+    //  milliseconds
     private long timeToPrepareFood;
     private boolean monitored;
 }

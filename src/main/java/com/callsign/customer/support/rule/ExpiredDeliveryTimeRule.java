@@ -1,18 +1,17 @@
 package com.callsign.customer.support.rule;
 
-import com.callsign.customer.support.model.delivery.Delivery;
-import com.callsign.customer.support.model.delivery.DeliveryStatus;
-import com.callsign.customer.support.model.ticket.Ticket;
-import com.callsign.customer.support.model.ticket.TicketPriority;
-import com.callsign.customer.support.model.ticket.TicketStatus;
-import com.callsign.customer.support.repository.TicketRepository;
+import com.callsign.customer.support.model.Delivery;
+import com.callsign.customer.support.model.DeliveryStatus;
+import com.callsign.customer.support.model.Ticket;
+import com.callsign.customer.support.model.TicketPriority;
+import com.callsign.customer.support.model.TicketStatus;
+import com.callsign.customer.support.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
-import static java.lang.System.*;
+import static java.lang.System.currentTimeMillis;
 
 /**
  * @author Shadab Khan
@@ -20,8 +19,8 @@ import static java.lang.System.*;
  */
 @Component
 @RequiredArgsConstructor
-public class ExpiredDeliveryTimeRule implements Rule{
-    private final TicketRepository ticketRepository;
+public class ExpiredDeliveryTimeRule implements Rule {
+    private final TicketService ticketService;
 
     @Override
     public boolean condition(Delivery delivery) {
@@ -36,8 +35,10 @@ public class ExpiredDeliveryTimeRule implements Rule{
         Ticket ticket = Ticket.builder()
                 .priority(TicketPriority.HIGH)
                 .status(TicketStatus.OPEN)
+                .description("delivery time has expired")
                 .delivery(delivery)
                 .build();
-        ticketRepository.save(ticket);
+        ticketService.createTicket(ticket);
+        delivery.setMonitored(true);
     }
 }

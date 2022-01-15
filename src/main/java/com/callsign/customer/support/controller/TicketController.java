@@ -1,6 +1,6 @@
 package com.callsign.customer.support.controller;
 
-import com.callsign.customer.support.model.ticket.Ticket;
+import com.callsign.customer.support.model.Ticket;
 import com.callsign.customer.support.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,6 @@
 package com.callsign.customer.support.rule;
 
-import com.callsign.customer.support.model.delivery.Delivery;
-import com.callsign.customer.support.model.ticket.Ticket;
+import com.callsign.customer.support.model.Delivery;
 
 /**
  * @author Shadab Khan

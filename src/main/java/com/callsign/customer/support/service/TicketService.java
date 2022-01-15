@@ -1,6 +1,6 @@
 package com.callsign.customer.support.service;
 
-import com.callsign.customer.support.model.ticket.Ticket;
+import com.callsign.customer.support.model.Ticket;
 
 import java.util.List;
 
@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface TicketService {
     List<Ticket> findAllTickets();
+
+    Ticket createTicket(Ticket ticket);
 }

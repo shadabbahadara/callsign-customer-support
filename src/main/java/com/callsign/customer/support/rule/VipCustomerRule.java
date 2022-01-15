@@ -1,5 +1,6 @@
 package com.callsign.customer.support.rule;
 
+import com.callsign.customer.support.model.CustomerType;
 import com.callsign.customer.support.model.Delivery;
 import com.callsign.customer.support.model.Ticket;
 import com.callsign.customer.support.model.TicketPriority;
@@ -14,22 +15,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class ExpectedDeliveryTimeRule implements Rule {
+public class VipCustomerRule implements Rule{
     private final TicketService ticketService;
 
     @Override
     public boolean condition(Delivery delivery) {
-        long expectedDeliveryTime = delivery.getExpectedDeliveryTime().getTime() - System.currentTimeMillis();
-        long estimatedDeliveryTime = delivery.getTimeToReachDestination() + delivery.getTimeToPrepareFood();
-        return estimatedDeliveryTime > expectedDeliveryTime;
+        return CustomerType.VIP.equals(delivery.getCustomerType());
     }
 
     @Override
     public void action(Delivery delivery) {
         Ticket ticket = Ticket.builder()
-                .priority(TicketPriority.MEDIUM)
+                .priority(TicketPriority.HIGH)
                 .status(TicketStatus.OPEN)
-                .description("estimated delivery time is greater than expected delivery time")
+                .description("Customer is VIP")
                 .delivery(delivery)
                 .build();
         ticketService.createTicket(ticket);

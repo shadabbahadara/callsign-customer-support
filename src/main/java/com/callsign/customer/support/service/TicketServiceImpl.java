@@ -1,6 +1,6 @@
 package com.callsign.customer.support.service;
 
-import com.callsign.customer.support.model.ticket.Ticket;
+import com.callsign.customer.support.model.Ticket;
 import com.callsign.customer.support.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,5 +22,10 @@ public class TicketServiceImpl implements TicketService {
     public List<Ticket> findAllTickets() {
         log.info("finding all tickets...");
         return ticketRepository.findAll();
+    }
+
+    @Override
+    public Ticket createTicket(Ticket ticket) {
+        return ticketRepository.save(ticket);
     }
 }
