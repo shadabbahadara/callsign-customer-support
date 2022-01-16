@@ -1,10 +1,12 @@
 package com.callsign.customer.support.filter;
 
 import com.callsign.customer.support.client.UserClient;
+import com.callsign.customer.support.exception.ErrorCode;
 import com.callsign.customer.support.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -35,6 +38,8 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
     private final UserClient userDetailsService;
     private final JwtUtil jwtUtil;
+    @Qualifier("handlerExceptionResolver")
+    private HandlerExceptionResolver resolver;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -59,9 +64,9 @@ public class AuthorizationFilter extends OncePerRequestFilter {
             }
         } catch (Exception e) {
             log.error("Error in Login: {} ", e.getMessage());
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
             Map<String, String> error = new HashMap<>();
-            error.put("error_message", e.getMessage());
+            error.put("errorMessage", e.getMessage());
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             new ObjectMapper().writeValue(response.getWriter(), error);
         }
