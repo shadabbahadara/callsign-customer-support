@@ -1,7 +1,6 @@
 package com.callsign.customer.support.filter;
 
 import com.callsign.customer.support.client.UserClient;
-import com.callsign.customer.support.exception.ErrorCode;
 import com.callsign.customer.support.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

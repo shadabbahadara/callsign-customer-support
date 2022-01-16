@@ -5,5 +5,5 @@ package com.callsign.customer.support.exception;
  * @since 16/01/2022
  */
 public enum ErrorCode {
-//error codes
+    TICKET_NOT_FOUND;
 }

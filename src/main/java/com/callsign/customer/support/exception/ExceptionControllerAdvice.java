@@ -11,5 +11,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice
 public class ExceptionControllerAdvice {
-//exception handlers
+
+    @ExceptionHandler(TicketNotFoundException.class)
+    public ResponseEntity<ErrorResponse> incorrectPasswordExceptionHandler(TicketNotFoundException e) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setErrorCode(ErrorCode.TICKET_NOT_FOUND);
+        errorResponse.setErrorMessage(e.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 }
+

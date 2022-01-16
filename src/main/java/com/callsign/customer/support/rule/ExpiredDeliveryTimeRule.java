@@ -1,10 +1,6 @@
 package com.callsign.customer.support.rule;
 
-import com.callsign.customer.support.model.Delivery;
-import com.callsign.customer.support.model.DeliveryStatus;
-import com.callsign.customer.support.model.Ticket;
-import com.callsign.customer.support.model.TicketPriority;
-import com.callsign.customer.support.model.TicketStatus;
+import com.callsign.customer.support.model.*;
 import com.callsign.customer.support.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
